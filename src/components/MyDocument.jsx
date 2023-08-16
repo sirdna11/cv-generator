@@ -1,91 +1,116 @@
 import React from 'react';
-import { Page, pdf, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, pdf, Text, View, Document, StyleSheet,Link } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#EAEDED',
         padding: 20,
     },
     header: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         borderBottomWidth: 2,
         borderBottomColor: '#112131',
         marginBottom: 20,
     },
-    section: {
-        flexGrow: 1,
-        padding: 20,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        shadow: '0 2px 4px rgba(0,0,0,0.1)',
-        marginVertical: 8
-    },
-    content: {
-        marginTop: 10,
-    },
     name: {
-        fontSize: 32,
+        fontSize: 36,
         fontWeight: 'bold',
-        color: '#112131',
+        color: '#2C3E50',
     },
-    emailPhone: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+    section: {
+        padding: 10,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        shadow: '0 2px 4px rgba(0,0,0,0.1)',
+        marginVertical: 6
     },
-    summary: {
-        marginVertical: 10,
-    },
-    
-    itemDataSummary: {
-        marginTop: 6,
-        fontSize: 14,
-        color: '#444',
-        textAlign: 'justify',  // for better text alignment in paragraphs
-    },
-    
     itemTitle: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
-        color: '#112131',
+        color: '#3498DB',
+        marginBottom: 8,
     },
     itemData: {
-        marginTop: 4,
         fontSize: 14,
-        color: '#444',
+        color: '#7F8C8D',
+        marginBottom: 4,
     },
+    skillItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 4,
+    },
+    skillLabel: {
+        fontSize: 14,
+        color: '#34495E',
+        marginRight: 8,
+    },
+    skillValue: {
+        fontSize: 50,
+        color: '#3498DB',
+        flexShrink: 0,
+    },
+    referenceItem: {
+        marginBottom: 6,
+    },
+    referenceName: {
+        fontSize: 16,
+        fontWeight: 'semi-bold',
+        color: '#2C3E50',
+    },
+    referenceDetail: {
+        marginTop: 2,
+        fontSize: 12,
+        color: '#7F8C8D',
+    }
 });
 
-const MyDocument = ({ data, employmentData, educationData }) => (
+const MyDocument = ({ data, employmentData, educationData, skillsData, referencesData,linksData }) => (
     <Document>
         <Page size="A4" style={styles.page}>
             <View style={styles.header}>
                 <Text style={styles.name}>{data.firstname} {data.lastname}</Text>
-            </View>
-            <View style={styles.section}>
-                <Text style={styles.itemTitle}>Professional Summary</Text>
-                <View style={styles.content}>
-                    <Text style={styles.itemData}>{data.summary}</Text>
-                </View>
-            </View>
-            <View style={styles.section}>
-                <Text style={styles.itemTitle}>Contact</Text>
-                <View style={styles.content}>
-                    <View style={styles.emailPhone}>
-                        <Text style={styles.itemData}>{data.email}</Text>
-                        <Text style={styles.itemData}>{data.phone}</Text>
-                    </View>
+                <View style={{ alignSelf: 'flex-end' }}>
+                    <Text style={styles.itemData}>{data.email}</Text>
+                    <Text style={styles.itemData}>{data.phone}</Text>
                     <Text style={styles.itemData}>{data.country}, {data.city}</Text>
+                </View>
+                <View style={styles.section}>
+                    <Text style={styles.itemTitle}>Links</Text>
+                    {linksData.map((link, index) => (
+                        <View key={index} style={styles.referenceItem}>
+                            <Text style={styles.referenceName}>{link.label}</Text>
+                            <Link src={link.url} style={styles.referenceDetail}>{link.url}</Link>
+                        </View>
+                    ))}
                 </View>
             </View>
 
             <View style={styles.section}>
+                <Text style={styles.itemTitle}>Professional Summary</Text>
+                <Text style={styles.itemData}>{data.summary}</Text>
+            </View>
+
+            <View style={styles.section}>
+                <Text style={styles.itemTitle}>Skills</Text>
+                {skillsData.map((skill, index) => (
+                    <View key={index} style={styles.skillItem}>
+                        <Text style={styles.skillLabel}>{skill.name}</Text>
+                        <Text style={styles.skillValue}>
+                            {".".repeat(skill.proficiency) + " ".repeat(10 - skill.proficiency)}
+                        </Text>
+                    </View>
+                ))}
+            </View>
+
+            <View style={styles.section}>
                 <Text style={styles.itemTitle}>Employment History</Text>
-                {employmentData.map((employment, index) => (
-                    <View key={index} style={styles.content}>
-                        <Text style={styles.itemTitle}>{employment.jobTitle}</Text>
+                {employmentData.slice(0, 2).map((employment, index) => ( // Show only top 2 experiences for space
+                    <View key={index}>
                         <Text style={styles.itemData}>{employment.description}</Text>
-                        <Text style={styles.itemData}>{employment.employer}</Text>
+                        <Text style={styles.itemData}>{employment.jobTitle} at {employment.employer}</Text>
                         <Text style={styles.itemData}>{employment.startTime} - {employment.currentlyEmployed ? "Present" : employment.endTime}</Text>
                     </View>
                 ))}
@@ -93,11 +118,21 @@ const MyDocument = ({ data, employmentData, educationData }) => (
 
             <View style={styles.section}>
                 <Text style={styles.itemTitle}>Education</Text>
-                {educationData.map((education, index) => (
-                    <View key={index} style={styles.content}>
-                        <Text style={styles.itemTitle}>{education.degree}</Text>
-                        <Text style={styles.itemData}>{education.institution}</Text>
+                {educationData.slice(0, 2).map((education, index) => (  // Show only top 2 educations for space
+                    <View key={index}>
+                        <Text style={styles.itemData}>{education.degree} at {education.institution}</Text>
                         <Text style={styles.itemData}>From {education.startYear} to {education.currentlyStudying ? "Present" : education.endYear}</Text>
+                    </View>
+                ))}
+            </View>
+
+            <View style={styles.section}>
+                <Text style={styles.itemTitle}>References</Text>
+                {referencesData.slice(0, 2).map((reference, index) => (  // Show only top 2 references for space
+                    <View key={index} style={styles.referenceItem}>
+                        <Text style={styles.referenceName}>{reference.name}</Text>
+                        <Text style={styles.referenceDetail}>{reference.phone}</Text>
+                        <Text style={styles.referenceDetail}>{reference.email}</Text>
                     </View>
                 ))}
             </View>
@@ -111,7 +146,10 @@ MyDocument.defaultProps = {
         lastname: ''
     },
     employmentData: [],
-    educationData: []
+    educationData: [],
+    skillsData: [],
+    referencesData: [],
+    linksData:[]
 };
 
 export const generatePdfBlob = async (documentProps) => {

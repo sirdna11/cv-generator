@@ -5,7 +5,9 @@ import './FormComponent.css';
 import EmploymentForm from './EmploymentForm';
 import EducationForm from './EducationForm';
 import CanvasComponent from './CanvasComponent'
-
+import SkillManagement from './SkillManagement'
+import ReferenceManagement from './ReferenceManagement'
+import LinksManagement from './LinksManagement'
 const INITIAL_FORM_DATA = {
     firstname: '',
     lastname: '',
@@ -24,17 +26,28 @@ const FormComponent = () => {
     const [employmentData, setEmploymentData] = useState([]);
     const [educationData, setEducationData] = useState([]);
     const [pdfBlob, setPdfBlob] = useState(null);
+    const [skillsData, setSkillsData] = useState([]);
+    const [referencesData, setReferencesData] = useState([]);
+    const [linksData,setLinksData]=useState([])
 
     useEffect(() => {
         const generatePDFBlob = async () => {
-            const doc = <MyDocument data={formData} EducationForm={employmentData} educationData={educationData} />;
+            const doc = <MyDocument data={formData} employmentData={employmentData} educationData={educationData} skillsData={skillsData} referencesData={referencesData} linksData={linksData}/>;
             const blob = await pdf(doc).toBlob();
             setPdfBlob(blob);
         };
 
         generatePDFBlob();
-    }, [formData, employmentData, educationData]);
-
+    }, [formData, employmentData, educationData,skillsData,referencesData,linksData]);
+    const handleLinksChange =(newLinksData)=>{
+        setLinksData(newLinksData)
+    }
+    const handleSkillsChange = (newSkillsData) => {
+        setSkillsData(newSkillsData);
+    };
+    const handleReferencesChange = (newReferencesData) => {  // New handler for references
+        setReferencesData(newReferencesData);
+    };
     const handleEmploymentChange = (data) => setEmploymentData(data);
     const handleEducationChange = (data) => setEducationData(data);
     const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -63,6 +76,9 @@ const FormComponent = () => {
                     <label>Country:<input className='input-country' name='country' value={formData.country} onChange={handleChange} /></label>
                     <label>City:<input className='input-city' name='city' value={formData.city} onChange={handleChange} /></label>
                 </div>
+                <div>
+                <LinksManagement onLinksChange={handleLinksChange}/>
+                </div>
                 <div className='summary'>
                     <h3>Professional Summary</h3>
                     <p>Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities, and skills.</p>
@@ -74,11 +90,18 @@ const FormComponent = () => {
                     <EmploymentForm onEmploymentChange={handleEmploymentChange} />
                     <EducationForm onEducationChange={handleEducationChange} />
                 </div>
+                <div>
+                    <SkillManagement onSkillsChange={handleSkillsChange} />
+                </div>
+                <div>
+                    <h3>References</h3>
+                    <ReferenceManagement onReferencesChange={handleReferencesChange} />  // Added the component here
+                </div>
             </div>
             <div>
                 <button onClick={downloadPDF}>Download PDF</button>
                 
-                <CanvasComponent data={formData} employmentData={employmentData} educationData={educationData} />
+                <CanvasComponent data={formData} employmentData={employmentData} educationData={educationData} skillsData={skillsData} referencesData={referencesData} linksData={linksData}/>
             </div>
         </div>
     );

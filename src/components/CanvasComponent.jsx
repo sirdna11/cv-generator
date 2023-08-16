@@ -5,13 +5,13 @@ import MyDocument from './MyDocument';
 import * as pdfjs from 'pdfjs-dist';
 
 pdfjs.GlobalWorkerOptions.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
-function CanvasComponent({ data , employmentData, educationData}) {
+function CanvasComponent({ data , employmentData, educationData,skillsData,referencesData,linksData}) {
     const canvasRef = useRef(null);
     const [pdfImage, setPdfImage] = useState(null);
   
     useEffect(() => {
       async function renderPDFAsImage() {
-        const blob = await pdf(<MyDocument data={data} employmentData={employmentData} educationData={educationData} />).toBlob();
+        const blob = await pdf(<MyDocument data={data} employmentData={employmentData} educationData={educationData} skillsData={skillsData} referencesData={referencesData} linksData={linksData}/>).toBlob();
         const pdfDocument = await pdfjs.getDocument({ data: await blob.arrayBuffer() }).promise;
   
         const page = await pdfDocument.getPage(1); // Get the first page
@@ -34,7 +34,7 @@ function CanvasComponent({ data , employmentData, educationData}) {
       }
   
       renderPDFAsImage();
-    }, [data,employmentData, educationData]);
+    }, [data,employmentData, educationData,skillsData,referencesData,linksData]);
   
     useEffect(() => {
       if (pdfImage) {
