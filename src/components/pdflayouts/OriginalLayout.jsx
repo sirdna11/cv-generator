@@ -3,7 +3,7 @@ import { Text, View, Link, StyleSheet, Page } from '@react-pdf/renderer';
 
 
 
-const OriginalLayout = ({ data, selectedColor, ...props  }) => {
+const OriginalLayout = ({ data, selectedColor,textColor, ...props  }) => {
     const styles = StyleSheet.create({
         page: {
             flexDirection: 'column',
@@ -16,15 +16,59 @@ const OriginalLayout = ({ data, selectedColor, ...props  }) => {
             borderBottomWidth: 2,
             borderBottomColor: '#112131',
             marginBottom: 10,
+        },name: {
+            fontSize: 40,
+            fontWeight: 'bold',
+            color: 'black',
+        },
+        contact: {
+            fontSize: 12,
+            color: 'black',
+            marginVertical: 2,
+        },
+        itemTitle: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: 'black',
+            marginBottom: 6,
+        },
+        itemData: {
+            fontSize: 12,
+            color: 'black',
+            marginBottom: 4,
+        },
+        skillLabel: {
+            flex: 1,
+            fontWeight: 'bold',
+            color: 'black',
+        },
+        skillValue: {
+            flex: 2,
+            fontSize: 18,  // Increase the size for visibility
+            letterSpacing: 3,  // Add some spacing between the dots
+            color: 'black',
+        },
+        referenceItem: {
+            marginBottom: 4,
+            color: 'black',
+        },
+        referenceName: {
+            fontWeight: 'bold',
+            fontSize: 14,
+            color: 'black',
+        },
+        referenceDetail: {
+            fontSize: 12,
+            color: 'black',
         },
         name: {
             fontSize: 40,
             fontWeight: 'bold',
-            color: '#2C3E50',
+            color: textColor || '#2C3E50',
         },
         contact: {
             fontSize: 12,
-            color: '#7F8C8D',
+            color: textColor || 'black',
             marginVertical: 2,
         },
         section: {
@@ -36,12 +80,12 @@ const OriginalLayout = ({ data, selectedColor, ...props  }) => {
         itemTitle: {
             fontSize: 16,
             fontWeight: 'bold',
-            color: '#3498DB',
+            color: textColor || '#3498DB',
             marginBottom: 6,
         },
         itemData: {
             fontSize: 12,
-            color: '#7F8C8D',
+            color: textColor || '#7F8C8D',
             marginBottom: 4,
         },
         skillRow: {
@@ -51,32 +95,34 @@ const OriginalLayout = ({ data, selectedColor, ...props  }) => {
         },
         skillLabel: {
             flex: 1,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: textColor || 'black',
         },
         skillValue: {
             flex: 2,
             fontSize: 18,  // Increase the size for visibility
-            letterSpacing: 3  // Add some spacing between the dots
+            letterSpacing: 3,  // Add some spacing between the dots
+            color: textColor || 'black',
         },
         dotsContainer: {
             flexDirection: 'row',
-            marginLeft: 10
+            marginLeft: 10,
         },
         dot: {
             width: 10,  // You can adjust the size of the dots
             height: 10,  // You can adjust the size of the dots
             borderRadius: 5,
-            marginHorizontal: 2
+            marginHorizontal: 2,
         },
         activeDot: {
-            backgroundColor: 'black'
+            backgroundColor: 'black',
         },
         inactiveDot: {
-            backgroundColor: 'grey'
+            backgroundColor: 'grey',
         },
-        
         referenceItem: {
             marginBottom: 4,
+            color: textColor || 'black',
         },
         // ... other styles
     });

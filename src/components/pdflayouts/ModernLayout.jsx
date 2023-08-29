@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, Link, StyleSheet, Page } from '@react-pdf/renderer';
 
 const ModernLayout = ({ 
-    data, skillsData, employmentData, educationData, referencesData, linksData, selectedColor 
+    data, skillsData, employmentData, educationData, referencesData, linksData, selectedColor,textColor
 }) => {
     const styles = StyleSheet.create({
         page: {
@@ -14,37 +14,40 @@ const ModernLayout = ({
             backgroundColor: selectedColor || '#2C3E50',
             padding: 10,
             flexDirection: 'column',
+            color: textColor || 'black',
         },
         mainContent: {
             flex: 2,
             padding: 10,
             flexDirection: 'column',
+            color: textColor || 'black',
         },
         name: {
             fontSize: 28,
             fontWeight: 'bold',
-            color: 'white',
+            color: textColor || 'black',
             marginBottom: 8,
         },
         contact: {
             fontSize: 12,
-            color: 'white',
+            color: textColor || 'black',
             marginBottom: 8,
         },
         sidebarTitle: {
             fontSize: 16,
             fontWeight: 'bold',
-            color: 'white',
+            color: textColor || 'black',
             marginBottom: 4,
         },
         sidebarData: {
             flexDirection: 'row',
             alignItems: 'center',
             marginBottom: 6,
+            color: textColor || 'black',
         },
         skillName: {
             fontSize: 12,
-            color: 'white',
+            color: textColor || 'black',
             marginRight: 8,
         },
         dot: {
@@ -62,28 +65,31 @@ const ModernLayout = ({
             backgroundColor: 'white',
             borderRadius: 6,
             marginVertical: 5,
+            color: textColor || 'black',
         },
         itemTitle: {
             fontSize: 16,
             fontWeight: 'bold',
-            color: '#3498DB',
+            color: textColor || '#3498DB',
             marginBottom: 6,
         },
         itemData: {
             fontSize: 12,
-            color: '#7F8C8D',
+            color: textColor || '#7F8C8D',
             marginBottom: 4,
         },
         referenceItem: {
             marginBottom: 4,
+            color: textColor || 'black',
         },
         referenceName: {
             fontWeight: 'bold',
-            fontSize: 14, 
+            fontSize: 14,
+            color: textColor || 'black',
         },
         referenceDetail: {
             fontSize: 12,
-            color: '#7F8C8D',
+            color: textColor || '#7F8C8D',
         }
     });
 

@@ -9,7 +9,7 @@ import SkillManagement from './SkillManagement'
 import ReferenceManagement from './ReferenceManagement'
 import LinksManagement from './LinksManagement'
 import PersonalDetailsForm from './PersonalDetailsForm';
-import ColorPicker from './ColorPicker'
+import ColorPickerComponent from './ColorPickerComponent'
 import LayoutSelector from './LayoutSelector'
 const INITIAL_FORM_DATA = {
     firstname: '',
@@ -68,8 +68,8 @@ const FormComponent = () => {
         <div className='form'>
             <div className='input-group'>
                 <div>
-                    <LayoutSelector onLayoutSelect={setLayoutType}/>
-                    <ColorPicker onColorSelected={handleColorChange} />
+                   
+                   
                     <PersonalDetailsForm formData={formData} handleChange={handleChange} />
                     <LinksManagement onLinksChange={handleLinksChange}/>
                 </div>
@@ -86,10 +86,13 @@ const FormComponent = () => {
                     <h3>References</h3>
                     <ReferenceManagement onReferencesChange={handleReferencesChange} />  
                 </div>
+                <div>
+                    <LayoutSelector onLayoutSelect={setLayoutType}/>
+                    <ColorPickerComponent onColorSelected={handleColorChange} />
+                </div>
             </div>
-            <div>
+            <div className='canvas-group'>
                 <button onClick={downloadPDF}>Download PDF</button>
-                
                 <CanvasComponent data={formData} employmentData={employmentData} educationData={educationData} skillsData={skillsData} referencesData={referencesData} linksData={linksData} selectedColor={selectedColor} layoutType={layoutType}/>
             </div>
         </div>

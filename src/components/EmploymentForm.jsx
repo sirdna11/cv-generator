@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { DatePicker } from 'antd';
+import moment from 'moment';
 const getInitialEmployment = () => ({
     jobTitle: '',
     description: '',
@@ -53,28 +54,26 @@ const EmploymentForm = ({onEmploymentChange}) => {
             value={employment.employer}
             onChange={(e) => handleInputChange(e, index)}
           />
-          <input
-    type="date"
-    name="startTime"
-    placeholder="Start Time"
-    value={employment.startTime}
-    onChange={(e) => handleInputChange(e, index)}
+<DatePicker
+  name="startTime"
+  placeholder="Start Time"
+  value={employment.startTime ? moment(employment.startTime) : null}
+  onChange={(date, dateString) => handleInputChange({ target: { name: 'startTime', value: dateString } }, index)}
 />
 
-
-<input
-    type="date"
-    name="endTime"
-    placeholder="End Time"
-    disabled={employment.currentlyEmployed}
-    value={employment.endTime}
-    onChange={(e) => handleInputChange(e, index)}
+<DatePicker
+  name="endTime"
+  placeholder="End Time"
+  disabled={employment.currentlyEmployed}
+  value={employment.endTime ? moment(employment.endTime) : null}
+  onChange={(date, dateString) => handleInputChange({ target: { name: 'endTime', value: dateString } }, index)}
 />
 
 
 <label>
     Currently Employed:
     <input
+        className='bruh'
         type="checkbox"
         name="currentlyEmployed"
         checked={employment.currentlyEmployed}

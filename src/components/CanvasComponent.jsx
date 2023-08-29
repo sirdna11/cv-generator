@@ -2,9 +2,10 @@ import React, { useRef,useState, useEffect } from 'react';
 
 import { pdf } from '@react-pdf/renderer';
 import MyDocument from './MyDocument';
-import * as pdfjs from 'pdfjs-dist';
 
-pdfjs.GlobalWorkerOptions.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
+
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 function CanvasComponent({ data , employmentData, educationData,skillsData,referencesData,linksData,selectedColor,layoutType}) {
     const canvasRef = useRef(null);
     const [pdfImage, setPdfImage] = useState(null);

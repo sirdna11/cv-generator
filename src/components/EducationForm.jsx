@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import moment from 'moment';
+import { DatePicker } from 'antd';
 const getInitialEducation = () => ({
     degree: '',
     institution: '',
@@ -47,20 +48,20 @@ const EducationForm = ({ onEducationChange }) => {
             value={education.institution}
             onChange={(e) => handleInputChange(e, index)}
           />
-          <input
-            type="date"
-            name="startYear"
-            placeholder="Start Year"
-            value={education.startYear}
-            onChange={(e) => handleInputChange(e, index)}
+        
+          <DatePicker
+              name="startYear"
+              placeholder="startYear"
+              value={education.startYear ? moment(education.startYear) : null}
+              onChange={(date, dateString) => handleInputChange({ target: { name: 'startYear', value: dateString } }, index)}
           />
-          <input
-            type="date"
+
+          <DatePicker
             name="endYear"
             placeholder="End Year"
             disabled={education.currentlyStudying}
-            value={education.endYear}
-            onChange={(e) => handleInputChange(e, index)}
+            value={education.endYear ? moment(education.endYear) : null}
+            onChange={(date, dateString) => handleInputChange({ target: { name: 'endYear', value: dateString } }, index)}
           />
           <label>
             Currently Studying:

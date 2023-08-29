@@ -1,9 +1,11 @@
 
 .form{
     display: flex;
-    justify-content: space-evenly;
+    
 }
-
+.bruh{
+    width: auto;
+}
 .input-group {
     padding: 20px;
     border: 1px solid #e1e1e1;
@@ -12,6 +14,8 @@
     max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 
@@ -35,13 +39,13 @@
     width: 100%;
     padding: 8px;
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 4px;
     transition: border 0.3s; /* Smooth transition for hover effect */
 }
 
 .input-group input:focus {
-    border-color: #007BFF; /* Change border color on focus */
+    border-color: 2px 2px 5px rgba(0, 0, 0, 0.3);
     outline: none;
 }
 .cv-display{
@@ -103,11 +107,24 @@
 .cv-item {
     margin-bottom: 5px;
 }
-.pdf-viewer {
-    opacity: 0;
-    transition: opacity 0.5s;  /* Adjust time for smoother transition if needed */
+
+
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
-.pdf-viewer.visible {
-    opacity: 1;
+button:hover {
+    background-color: #0056b3;
+}
+.canvas-group{
+    display: flex;
+    flex-direction: column;
 }

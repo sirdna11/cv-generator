@@ -17,11 +17,11 @@ const SidebarLayout = ({
         name: {
             fontSize: 40,
             fontWeight: 'bold',
-            color: '#2C3E50',
+            color: 'black',
         },
         contact: {
             fontSize: 12,
-            color: '#7F8C8D',
+            color: 'black',
             marginVertical: 2,
         },
         section: {

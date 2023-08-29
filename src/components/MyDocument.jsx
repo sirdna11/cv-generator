@@ -1,8 +1,8 @@
 import React from 'react';
 import { Page, pdf, Text, View, Document, StyleSheet,Link } from '@react-pdf/renderer';
-import OriginalLayout from './OriginalLayout';
-import ModernLayout from './ModernLayout';
-import SidebarLayout from './SidebarLayout';
+import OriginalLayout from './pdflayouts/OriginalLayout';
+import ModernLayout from './pdflayouts/ModernLayout';
+import SidebarLayout from './pdflayouts/SidebarLayout';
 
 
 const MyDocument = (props) => {

@@ -1,15 +1,21 @@
-// App.js
-
 import React from 'react';
-import './App.css';
-import FormComponent from './components/FormComponent';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import FormComponent  from './components/FormComponent'; // Adjust the import path to your CV generator component
+import HomePage from './HomePage'; // If HomePage is in the same directory
+
 function App() {
-  
-  return (
-    <div className="App">
-      <FormComponent />
-    </div>
-  );
+    return (
+        <Router>
+            <div>
+            <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/cv-generator" element={<FormComponent />} />
+                </Routes>
+                
+            </div>
+        </Router>
+    );
 }
 
 export default App;
+
