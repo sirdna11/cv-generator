@@ -66,9 +66,13 @@ const FormComponent = () => {
 
     return (
         <div className='form'>
+
             <div className='input-group'>
                 <div>
-                   
+                    <div>
+                        <LayoutSelector onLayoutSelect={setLayoutType}/>
+                        <ColorPickerComponent onColorSelected={handleColorChange} />
+                    </div>
                    
                     <PersonalDetailsForm formData={formData} handleChange={handleChange} />
                     <LinksManagement onLinksChange={handleLinksChange}/>
@@ -86,10 +90,7 @@ const FormComponent = () => {
                     <h3>References</h3>
                     <ReferenceManagement onReferencesChange={handleReferencesChange} />  
                 </div>
-                <div>
-                    <LayoutSelector onLayoutSelect={setLayoutType}/>
-                    <ColorPickerComponent onColorSelected={handleColorChange} />
-                </div>
+               
             </div>
             <div className='canvas-group'>
                 <button onClick={downloadPDF}>Download PDF</button>

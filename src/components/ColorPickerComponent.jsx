@@ -13,7 +13,7 @@ const ColorPickerComponent = ({ onColorSelected }) => {
                         {colors.map(color => (
                             <div
                                 key={color}
-                                style={{ backgroundColor: color, width: '30px', height: '30px', marginRight: '10px', cursor: 'pointer' }}
+                                style={{ backgroundColor: color, width: '30px', height: '30px', marginLeft: '10px', cursor: 'pointer' }}
                                 onClick={() => onColorSelected(color)}
                             />
                         ))}

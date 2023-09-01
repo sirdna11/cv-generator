@@ -66,6 +66,7 @@ const EducationForm = ({ onEducationChange }) => {
           <label>
             Currently Studying:
             <input
+            className='bruh'
               type="checkbox"
               name="currentlyStudying"
               checked={education.currentlyStudying}
