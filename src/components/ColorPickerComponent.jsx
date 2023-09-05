@@ -3,7 +3,7 @@ import { Popover, Button, Input } from 'antd';
 
 const ColorPickerComponent = ({ onColorSelected }) => {
     const colors = ['grey', 'white', 'blue', 'green', 'yellow', 'red'];
-    const [customColor, setCustomColor] = useState('white'); // start with black as default
+    const [customColor, setCustomColor] = useState('white'); 
 
     return (
         <Popover 

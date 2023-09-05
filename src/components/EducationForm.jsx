@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { DatePicker } from 'antd';
+
 const getInitialEducation = () => ({
     degree: '',
     institution: '',
     startYear: '',
     endYear: '',
     currentlyStudying: false
-  });
-  
+});
 
 const EducationForm = ({ onEducationChange }) => {
   const [educations, setEducations] = useState([getInitialEducation()]);
@@ -48,8 +48,10 @@ const EducationForm = ({ onEducationChange }) => {
             value={education.institution}
             onChange={(e) => handleInputChange(e, index)}
           />
-        
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <DatePicker
+          style={styles.datePickerSpacing}
+              className="date-picker-spacing"
               name="startYear"
               placeholder="startYear"
               value={education.startYear ? moment(education.startYear) : null}
@@ -57,6 +59,8 @@ const EducationForm = ({ onEducationChange }) => {
           />
 
           <DatePicker
+            style={styles.datePickerSpacing}
+            className="date-picker-spacing"
             name="endYear"
             placeholder="End Year"
             disabled={education.currentlyStudying}
@@ -66,7 +70,7 @@ const EducationForm = ({ onEducationChange }) => {
           <label>
             Currently Studying:
             <input
-            className='bruh'
+              className='bruh'
               type="checkbox"
               name="currentlyStudying"
               checked={education.currentlyStudying}
@@ -79,12 +83,23 @@ const EducationForm = ({ onEducationChange }) => {
               }}
             />
           </label>
-          <button onClick={() => handleRemoveClick(index)}>Delete</button>
+          <button className="delete-button" style={{ marginTop: '0px' }} onClick={() => handleRemoveClick(index)}>Delete</button>
+          </div>
         </div>
       ))}
-      <button onClick={addEducation}>Add Education</button>
+      
+      <button className="centered-button" onClick={addEducation}>Add Education</button>
+      
     </div>
   );
+};
+
+// Local component styles
+const styles = {
+    datePickerSpacing: {
+      marginRight:"5px"
+    },
+    
 };
 
 export default EducationForm;

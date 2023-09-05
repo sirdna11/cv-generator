@@ -54,44 +54,55 @@ const EmploymentForm = ({onEmploymentChange}) => {
             value={employment.employer}
             onChange={(e) => handleInputChange(e, index)}
           />
-<DatePicker
-  name="startTime"
-  placeholder="Start Time"
-  value={employment.startTime ? moment(employment.startTime) : null}
-  onChange={(date, dateString) => handleInputChange({ target: { name: 'startTime', value: dateString } }, index)}
-/>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <DatePicker
+          style={style.datePickerSpacing}
+          name="startTime"
+          placeholder="Start Time"
+          value={employment.startTime ? moment(employment.startTime) : null}
+          onChange={(date, dateString) => handleInputChange({ target: { name: 'startTime', value: dateString } }, index)}
+        />
 
-<DatePicker
-  name="endTime"
-  placeholder="End Time"
-  disabled={employment.currentlyEmployed}
-  value={employment.endTime ? moment(employment.endTime) : null}
-  onChange={(date, dateString) => handleInputChange({ target: { name: 'endTime', value: dateString } }, index)}
-/>
+        <DatePicker
+          style={style.datePickerSpacing}
+          name="endTime"
+          placeholder="End Time"
+          disabled={employment.currentlyEmployed}
+          value={employment.endTime ? moment(employment.endTime) : null}
+          onChange={(date, dateString) => handleInputChange({ target: { name: 'endTime', value: dateString } }, index)}
+        />
 
 
-<label>
-    Currently Employed:
-    <input
-        className='bruh'
-        type="checkbox"
-        name="currentlyEmployed"
-        checked={employment.currentlyEmployed}
-        onChange={(e) => {
-            const value = e.target.checked;
-            handleInputChange({ target: { name: 'currentlyEmployed', value }}, index);
-            if (value) {
-                handleInputChange({ target: { name: 'endTime', value: '' }}, index);
-            }
-        }}
-    />
-</label>
-          <button onClick={() => handleRemoveClick(index)}>Delete</button>
+        <label>
+            Currently Employed:
+            <input
+                className='bruh'
+                type="checkbox"
+                name="currentlyEmployed"
+                checked={employment.currentlyEmployed}
+                onChange={(e) => {
+                    const value = e.target.checked;
+                    handleInputChange({ target: { name: 'currentlyEmployed', value }}, index);
+                    if (value) {
+                        handleInputChange({ target: { name: 'endTime', value: '' }}, index);
+                    }
+                }}
+            />
+        </label>
+                  <button onClick={() => handleRemoveClick(index)} style={{marginTop:"0px"}}>Delete</button>
+                </div>
         </div>
-      ))}
+              ))}
+              
       <button onClick={addEmployment}>Add one more employment</button>
     </div>
   );
 };
+
+const style={
+  datePickerSpacing: {
+    marginRight:"5px"
+}
+}
 
 export default EmploymentForm;

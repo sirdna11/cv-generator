@@ -28,7 +28,7 @@ const FormComponent = () => {
     const [skillsData, setSkillsData] = useState([]);
     const [referencesData, setReferencesData] = useState([]);
     const [linksData,setLinksData]=useState([])
-    const [selectedColor, setSelectedColor] = useState('grey')
+    const [selectedColor, setSelectedColor] = useState('white')
     const [layoutType, setLayoutType] = useState('sidebar');
     useEffect(() => {
         const generatePDFBlob = async () => {

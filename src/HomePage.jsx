@@ -12,8 +12,7 @@ const HomePage = () => {
                     <button style={styles.button}>Go to CV Generator</button>
                 </Link>
                 
-                <button style={styles.placeholderButton}>Placeholder 1</button>
-                <button style={styles.placeholderButton}>Placeholder 2</button>
+               
             </div>
         </div>
     );
