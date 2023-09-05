@@ -16,5 +16,5 @@ Create professional resumes with ease using CV-Generator. Craft your CV with pre
 - **Template Selection:** Multiple modern templates to choose from.
 - **Export Options:** Download your CV in  formats like PDF.
 
-## Installation and Setup
+
 
